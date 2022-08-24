@@ -5,6 +5,8 @@ import Game from './pages/game';
 import AboutMe from './pages/aboutme';
 
 function App() {
+  // var userLang = navigator.language || navigator.userLanguage; 
+  // alert ("The language is: " + userLang);
 
   return (
     <div className="App">

@@ -1,7 +1,10 @@
+import './'
 
 function Game(){
     return (
-        <h1>Quiz Game</h1>
+        <div className="center-on-screen">
+            <h1>Quiz Game</h1>
+        </div>
     )
 }
 

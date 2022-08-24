@@ -9,10 +9,11 @@ function Home(){
     }
 
     return (
-        <>
+
+        <div className="center-on-screen">
         <Button onClick={() => onClickButton('/game')} text="MetCamp Quiz"/>
         <Button onClick={() => onClickButton('/about-me')} text="About Me"/>
-        </>
+        </div>
         )
 
 
