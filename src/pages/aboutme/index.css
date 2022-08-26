@@ -1,12 +1,7 @@
 .aboutmebackground{
-    height: 100vh;
-    max-height: 900px;
-    max-width: 1000px;
-    overflow: auto;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-around; */
-    margin:auto;
+    display: flex;
+    justify-content: center;
+
     text-align: left;
 }
 
@@ -16,17 +11,17 @@
 }
 
 .text-container{
-    margin: 20px;
+    margin:5vw;
+    max-width: 1000px;
 }
 
 .footer{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-around;
 }
 
 .links{
-    display: flex;
-    justify-content: center;
+    margin-left: 50px;
 }
 
 .links a{

@@ -18,7 +18,6 @@ function Home(){
     }
 
     // userLang.startsWith("es-") ? idioma = "/sobre-mi" : idioma = "/about-me"
-
     // userLang.startsWith("es-") ? idiomatext = "Sobre Mí" : idiomatext = "About Me"
 
     console.log(userLang);

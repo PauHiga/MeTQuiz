@@ -6,8 +6,6 @@ import AboutMe from './pages/aboutme';
 import SobreMi from './pages/aboutme/sobre-mi';
 
 function App() {
-  // var userLang = navigator.language || navigator.userLanguage; 
-  // alert ("The language is: " + userLang);
 
   return (
     <div className="App">
