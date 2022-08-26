@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap'); */
 
 .App {
   text-align: center;
@@ -10,7 +10,6 @@ body{
   background: linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(246,236,251,1) 82%, rgba(255,255,255,1) 100%); */
   background: rgb(255,255,255);
   background: linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(227,206,255,1) 85%, rgba(255,255,255,1) 100%);
-  min-height: 100vh;
 }
 
 .purple-grey{
