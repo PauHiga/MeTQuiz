@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
 import Game from './pages/game';
 import AboutMe from './pages/aboutme';
+import SobreMi from './pages/aboutme/sobre-mi';
 
 function App() {
   // var userLang = navigator.language || navigator.userLanguage; 
@@ -15,6 +16,7 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/game' element={<Game/>}/>
         <Route path='/about-me' element={<AboutMe/>}/>
+        <Route path='/sobre-mi' element={<SobreMi/>}/>
       </Routes>
     </BrowserRouter>
 

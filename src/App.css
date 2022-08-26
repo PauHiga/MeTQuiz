@@ -6,8 +6,10 @@
 
 body{
   font-family: 'Caveat', cursive;
+  /* background: rgb(255,255,255);
+  background: linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(246,236,251,1) 82%, rgba(255,255,255,1) 100%); */
   background: rgb(255,255,255);
-  background: linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(246,236,251,1) 82%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(227,206,255,1) 85%, rgba(255,255,255,1) 100%);
 }
 
 .purple-grey{
