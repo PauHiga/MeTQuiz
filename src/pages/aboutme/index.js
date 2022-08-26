@@ -7,8 +7,8 @@ function AboutMe(){
     
     return (
         <div className="center-on-screen">
-            <div className="aboutmebackground grey">        
-                <div className="text-container">
+            <div className="aboutmebackground grey">      
+                <div className="text-container">                
                     <h1 className='purple-grey'>About Me</h1>
                     <h2>Hi, I am Paula!</h2>
                     <p>I'm very excited to start my own programming journey!</p>

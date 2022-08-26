@@ -34,7 +34,7 @@
 }
 
 .cat{
-    background-image: url("./images/cat.svg");
+    background-image: url("./images/cat.png");
     background-repeat: no-repeat, no-repeat;
     background-position: right; 
     background-size: 300px;
