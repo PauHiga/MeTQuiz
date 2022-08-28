@@ -4,6 +4,7 @@ import Home from './pages/home';
 import Game from './pages/game';
 import AboutMe from './pages/aboutme';
 import SobreMi from './pages/aboutme/sobre-mi';
+import 'bulma/css/bulma.min.css';
 
 function App() {
 
