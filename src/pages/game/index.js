@@ -33,7 +33,7 @@ function Game(){
                     <form> 
                         {
                             wizardQuestion.map((item) => 
-                            {return <QuestionCard numeroPregunta = {item.id} preguntaActual = {item.question} respuestasActuales = {item.answers}/>}
+                            {return <QuestionCard key= {item.id} numeroPregunta = {item.id} preguntaActual = {item.question} respuestasActuales = {item.answers}/>}
                             ) 
                         }
                     </form>
