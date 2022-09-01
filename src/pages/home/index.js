@@ -1,6 +1,7 @@
 import Button from "../../componentes/Button"
 import { useNavigate} from 'react-router-dom';
 import './index.css'
+import Breadcrumb from "../../componentes/Breadcrumb";
 
 function Home(){
     const navigate = useNavigate()
@@ -23,7 +24,8 @@ function Home(){
 
     return (
 
-        <section className="hero is-fullheight">
+        <section className="hero section is-fullheight">
+            <Breadcrumb actualPage="/"/>
             <div className="hero-body is-justify-content-center is-flex-direction-column">
                 <Button text="MetCamp Quiz" onClick={()=> navigate("/game")}/>
                 <Button text={idiomatext} onClick={()=> navigate(idioma)}/>

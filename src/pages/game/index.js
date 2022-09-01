@@ -2,6 +2,7 @@ import './'
 import { useEffect, useState } from 'react'
 import QuestionCard from '../../componentes/QuestionCard'
 import Breadcrumb from '../../componentes/Breadcrumb'
+import './index.css'
 
 function Game(){
 
@@ -19,28 +20,29 @@ function Game(){
     }, []);
 
     return (
-        <section className="section">
-            <Breadcrumb/>
-            <h1 className="has-text-centered title">Harry Potter Quiz Game</h1>
-            
-            <div>
-            {   
-                loading && <div className="has-text-centered" ><span>Loading . . . </span></div>
-            }
+        <section className="section is-flex is-justify-content-center">
+            <div className='max-width'>
+                <Breadcrumb actualPage="/game"/>
+                <h1 className="has-text-centered title">Harry Potter Quiz Game</h1>
+                
+                <div>
+                {   
+                    loading && <div className="has-text-centered" ><span>Loading . . . </span></div>
+                }
 
-            {   
-                !loading && (
-                    <form> 
-                        {
-                            wizardQuestion.map((item) => 
-                            {return <QuestionCard key= {item.id} numeroPregunta = {item.id} preguntaActual = {item.question} respuestasActuales = {item.answers}/>}
-                            ) 
-                        }
-                    </form>
-                )
-            }
+                {   
+                    !loading && (
+                        <form> 
+                            {
+                                wizardQuestion.map((item) => 
+                                {return <QuestionCard key= {item.id} numeroPregunta = {item.id} preguntaActual = {item.question} respuestasActuales = {item.answers}/>}
+                                ) 
+                            }
+                        </form>
+                    )
+                }
+                </div>
             </div>
-
         </section>
     )
 }

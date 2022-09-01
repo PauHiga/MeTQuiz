@@ -21,7 +21,7 @@
 }
 
 .text-container{
-    padding:5vw;
+    padding:0vw 5vw 5vw 5vw;
     max-width: 1000px;
     /* background: rgb(255,255,255);
     background: linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(227,206,255,1) 85%, rgba(255,255,255,1) 100%);   */
