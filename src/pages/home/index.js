@@ -25,7 +25,6 @@ function Home(){
     return (
 
         <section className="hero section is-fullheight">
-            <Breadcrumb actualPage="/"/>
             <div className="hero-body is-justify-content-center is-flex-direction-column">
                 <Button text="MetCamp Quiz" onClick={()=> navigate("/game")}/>
                 <Button text={idiomatext} onClick={()=> navigate(idioma)}/>

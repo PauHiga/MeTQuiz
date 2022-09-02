@@ -1,7 +1,7 @@
 function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta})
 {   
 
-    const red = "blue"
+    const red = "red"
 
     return (
         <div className="box m-6">

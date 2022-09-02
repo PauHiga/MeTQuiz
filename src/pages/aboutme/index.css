@@ -1,10 +1,5 @@
-.aboutmebackground{
-    font-family: 'Caveat', cursive !important;
-    /* background-image: url("../../assets/background.png"); */
-    /* background-size:1000px; */
-}
-
 .aboutmebackground p{
+    font-family: 'Caveat', cursive !important;
     font-size: 30px;
     margin-top: 20px;
     margin-left: 50px;
@@ -12,17 +7,20 @@
 }
 
 .aboutmebackground h1{
+    font-family: 'Caveat', cursive !important;
     font-size: 60px;
     margin-top: 0;
+    text-align: center;
 }
 
 .aboutmebackground h2{
+    font-family: 'Caveat', cursive !important;    
     font-size: 40px;
 }
 
 .text-container{
-    padding:0vw 5vw 5vw 5vw;
-    max-width: 1000px;
+    padding:0vw 5vw 2vw 5vw;
+    max-width: 1300px;
     /* background: rgb(255,255,255);
     background: linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(227,206,255,1) 85%, rgba(255,255,255,1) 100%);   */
 }

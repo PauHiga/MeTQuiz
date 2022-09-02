@@ -1,13 +1,18 @@
 import './index.css'
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
-
+import Button from '../../componentes/Button';
+import { useNavigate } from 'react-router';
+import Breadcrumb from '../../componentes/Breadcrumb';
 
 function SobreMi(){
     
+    const navigate = useNavigate()
+
     return (
-        <div className="section aboutmebackground grey is-flex is-justify-content-center">           
+            <div className="section aboutmebackground grey is-flex is-flex-direction-column is-align-items-center">                      
                 <div className="text-container">
+                    <Breadcrumb/> 
                     <h1 className='purple-grey'>Sobre Mi</h1>
                     <h2>Hola, Soy Paula!</h2>
                     <p>Estoy muy entusiasmada de empezar mi propia aventura en programación!</p>
@@ -22,8 +27,9 @@ function SobreMi(){
                                     </div>
                         </div>
                         <div className="column cat"></div>
-                    </div>
+                    </div>               
                 </div>
+                <Button text="Ir al Quiz" onClick={()=> navigate ("/game") }/>     
             </div>
     )   
 }

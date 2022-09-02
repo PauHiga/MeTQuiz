@@ -1,24 +1,22 @@
 import { useNavigate } from "react-router"
+import { useLocation } from "react-router-dom"
+import './index.css'
 
 function Breadcrumb({actualPage}){
+
     const navigate = useNavigate()
+    const location = useLocation()
 
-    let thisIsHome = ""
-    let thisIsGame = ""
-
-    if (actualPage === "/") {
-        thisIsHome = "is-active"
-    } else {
-        thisIsGame = "is-active"
-    }
-
-    //console.log(actualPage)
+    const currentLocation = location.pathname
+    
+    let shownCurrentLocation = currentLocation
+    shownCurrentLocation = shownCurrentLocation.substring(1);
 
     return (
         <nav className="breadcrumb" aria-label="breadcrumbs">
         <ul>
-            <li className={thisIsHome} onClick={()=> navigate("/")}>Home</li>
-            <li className={thisIsGame} onClick={()=> navigate("/game")}>Game</li>
+        <li onClick={()=>navigate("/")}><span className="has-space"> Home </span></li>
+        <li className="has-text-dark"><span className="has-space">{shownCurrentLocation}</span></li>
         </ul>
         </nav>
     )
