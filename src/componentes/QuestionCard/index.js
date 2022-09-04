@@ -1,21 +1,56 @@
-function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta})
-{   
+import { useState} from "react"
 
-    const red = "red"
+function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setCheckAnswer, checkAnswer, resetGame, showSubmit})
+{   
+    const [radioChecked, setRadioChecked] = useState()
+                        
+    function chosenAnswer( questionId, answerTrueFalse) {
+        const noDuplicatedAnswers = checkAnswer.filter((item) => item.id !== questionId) 
+        setCheckAnswer([...noDuplicatedAnswers,
+        {
+            id: questionId,
+            answerTF: answerTrueFalse
+        }
+        ])
+    }
+
+    function colorAnswer(truefalse){
+        let valorClase = "column has-text-centered ml-2"
+        if (!showSubmit){
+            if (truefalse === true) { valorClase = "column has-text-centered ml-2 has-text-primary"}
+            else { valorClase = "column has-text-centered ml-2 has-text-danger"}
+        }
+        return valorClase
+    }
+
+    // console.log(resetGame)
+    // if (resetGame) {
+    //     console.log(resetGame)
+    //     setResetGame(false)
+    //     console.log(resetGame)
+    // }
+    // console.log(resetGame)
 
     return (
         <div className="box m-6">
-            <h3 className= "mb-5" style={{color: `${red}`}}> {numeroPregunta}- {preguntaActual}</h3>
+            <h3 className= "mb-5" > {numeroPregunta}- {preguntaActual}</h3>
             <div className="columns">
             {
                 respuestasActuales.map((item) => {
-                    
+
                     return (
-                        <div key={`${item.id}`}  className="column has-text-centered">
-                            <input type="radio" id={`${item.answer}`} name={`${preguntaActual}`}></input>
-                            <label className="ml-2" htmlFor={`${item.answer}`}>{item.answer}</label>
-                            {/* <br /> */}
-                        </div>
+                            <label className={colorAnswer(item.is_correct)}
+                            htmlFor={`${item.answer}`} key={`${item.id}`}>
+
+                                <input 
+                                className="m-1"
+                                onChange={()=> {chosenAnswer(numeroPregunta, item.is_correct); setRadioChecked(item.answer)}} 
+                                type="radio" 
+                                checked={radioChecked === item.answer}
+                                id={`${item.answer}`}
+                                name={`${preguntaActual}`
+                                }></input>
+                            {item.answer}</label>
                         )
                     })
             }

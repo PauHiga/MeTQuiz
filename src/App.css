@@ -2,31 +2,8 @@
 }
 
 body{
-  /* background: rgb(255,255,255);
-  background: linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(246,236,251,1) 82%, rgba(255,255,255,1) 100%); */
   background: rgb(255,255,255);
   background: linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(227,206,255,1) 85%, rgba(255,255,255,1) 100%);
   min-height: 100vh;
 }
 
-.purple-grey{
-  color: rgb(154, 131, 184);
-}
-
-.grey{
-  color: rgb(63, 60, 73);
-}
-
-h1{
-  font-size: 60px;
-
-}
-
-h2{
-  font-size: 40px;
-  margin: 0px;
-}
-
-p {
-  font-size: 30px;
-}
