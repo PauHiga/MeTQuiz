@@ -5,21 +5,29 @@
 .sly{
     background:linear-gradient(70deg, rgba(170,170,170,1) 25%, rgba(42,98,61,1) 50%);
     color: rgb(2, 37, 33);
+    font-family: 'Jim Nightshade', cursive;
+    font-size: x-large;
 }
 
 .gry{
     background:linear-gradient(70deg, rgba(238,186,48,1) 25%, rgba(174,0,1,1) 50%);
     color: rgb(43, 4, 4);
+    font-family: 'Jim Nightshade', cursive;
+    font-size: x-large;
 }
 
 .huf{
     background:linear-gradient(70deg, rgba(0,0,0,1) 15%, rgba(255,237,134,1) 50%);
     color: black;
+    font-family: 'Jim Nightshade', cursive;
+    font-size: x-large;
 }
 
 .rav{
     background:linear-gradient(70deg, rgba(148,107,45,1) 25%, rgba(34,47,91,1) 50%);
     color: white;
+    font-family: 'Jim Nightshade', cursive;
+    font-size: x-large;
 }
 
 .title-quiz{

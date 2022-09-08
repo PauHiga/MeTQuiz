@@ -1,42 +1,50 @@
-import { useState} from "react"
+import { useState, useEffect } from "react"
 
-function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setCheckAnswer, checkAnswer, resetGame, showSubmit})
+function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setCheckAnswer, checkAnswer, showSubmit, reset, setReset, PlayAgain})
 {   
-    const [radioChecked, setRadioChecked] = useState()
+
                         
-    function chosenAnswer( questionId, answerTrueFalse) {
+    function chosenAnswer( questionId, answerTrueFalse, answerId) {
         const noDuplicatedAnswers = checkAnswer.filter((item) => item.id !== questionId) 
         setCheckAnswer([...noDuplicatedAnswers,
         {
             id: questionId,
-            answerTF: answerTrueFalse
+            answerTF: answerTrueFalse,
+            answerTd: answerId
         }
         ])
     }
 
-    function colorAnswer(truefalse){
-        let valorClase = "column has-text-centered ml-2"
-        if (!showSubmit){
-            if (truefalse === true) { valorClase = "column has-text-centered ml-2 has-text-primary"}
-            else { valorClase = "column has-text-centered ml-2 has-text-danger"}
-        }
-        return valorClase
-    }
-
-    // console.log(resetGame)
-    // if (resetGame) {
-    //     console.log(resetGame)
-    //     setResetGame(false)
-    //     console.log(resetGame)
-    // }
-    // console.log(resetGame)
+    const [optionChecked, setOptionChecked] = useState(0)
+  
+    useEffect(()=> {    
+        setOptionChecked(0)
+    }, [reset]);
 
     return (
         <div className="box m-6">
             <h3 className= "mb-5" > {numeroPregunta}- {preguntaActual}</h3>
             <div className="columns">
             {
+                
                 respuestasActuales.map((item) => {
+
+                    function colorAnswer(truefalse){
+                        let valorClase = "column has-text-centered ml-2"
+                        if (!showSubmit){
+                            if (truefalse === true && radioTrue) { valorClase = "column has-text-centered ml-2 has-text-primary"}
+                            else if (truefalse === false && radioTrue) { valorClase = "column has-text-centered ml-2 has-text-danger"}
+                            else {valorClase = "column has-text-centered ml-2"}
+                        }
+                        console.log(radioTrue)
+                        return valorClase
+                    }
+
+                    let radioTrue 
+                    if (item.id === optionChecked
+                        //  && reset === false
+                         ){radioTrue=true}else {radioTrue=false}
+
 
                     return (
                             <label className={colorAnswer(item.is_correct)}
@@ -44,9 +52,11 @@ function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setC
 
                                 <input 
                                 className="m-1"
-                                onChange={()=> {chosenAnswer(numeroPregunta, item.is_correct); setRadioChecked(item.answer)}} 
-                                type="radio" 
-                                checked={radioChecked === item.answer}
+                                onChange={()=> {chosenAnswer(numeroPregunta, item.is_correct, item.id);                       setOptionChecked(item.id);
+                                setReset(false)
+                                }} 
+                                type="radio"
+                                checked={radioTrue}
                                 id={`${item.answer}`}
                                 name={`${preguntaActual}`
                                 }></input>
