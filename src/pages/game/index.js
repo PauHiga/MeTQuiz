@@ -6,6 +6,7 @@ import './index.css'
 import Button from '../../componentes/Button'
 import FinalImage from '../../componentes/final-image'
 import useFetch from '../../hooks/useFetch/inedx'
+import { useEffect } from 'react'
 
 function Game(){
 
@@ -36,19 +37,18 @@ function Game(){
     const rightAnswers = checkAnswer.filter((item)=>item.answerTF === true)
 
     const [reset, setReset] = useState(false)
-
     const PlayAgain = () =>{
-            setReset(true)
-            setScore(0)
-            setCheckAnswer([])
-            setMissingAnswers(false)
-            setshowSubmit(true)
+        setReset(true)
     }
 
-    // const playAgain = () =>{
-    // setReset(current => !current)
-    // console.log("quiz " + reset);
-    // }
+    useEffect(()=>{
+        setScore(0)
+        setCheckAnswer([])
+        setMissingAnswers(false)
+        setshowSubmit(true)
+        setReset(false)
+    }, [reset])
+
 
     function submitButtonPressed(){
         if (checkAnswer.length === wizardQuestion.length) { 

@@ -42,7 +42,6 @@ function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setC
 
                     let radioTrue 
                     if (item.id === optionChecked
-                        //  && reset === false
                          ){radioTrue=true}else {radioTrue=false}
 
 
@@ -53,7 +52,6 @@ function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setC
                                 <input 
                                 className="m-1"
                                 onChange={()=> {chosenAnswer(numeroPregunta, item.is_correct, item.id);                       setOptionChecked(item.id);
-                                setReset(false)
                                 }} 
                                 type="radio"
                                 checked={radioTrue}
