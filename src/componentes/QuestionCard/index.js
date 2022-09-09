@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 
-function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setCheckAnswer, checkAnswer, showSubmit, reset, setReset, PlayAgain})
+function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setCheckAnswer, checkAnswer, showSubmit, reset})
 {   
 
-                        
     function chosenAnswer( questionId, answerTrueFalse, answerId) {
         const noDuplicatedAnswers = checkAnswer.filter((item) => item.id !== questionId) 
         setCheckAnswer([...noDuplicatedAnswers,
@@ -16,10 +15,18 @@ function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setC
     }
 
     const [optionChecked, setOptionChecked] = useState(0)
-  
+    const inputRef = useRef()
+    const [firstWrongChoice, setFirstWrongChoice] = useState()
+    const callInputRef = () => {inputRef.current.focus();}
+
     useEffect(()=> {    
         setOptionChecked(0)
     }, [reset]);
+
+    function checkFirstWrong(){
+        
+        
+    }
 
     return (
         <div className="box m-6">
@@ -29,6 +36,7 @@ function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setC
                 
                 respuestasActuales.map((item) => {
 
+
                     function colorAnswer(truefalse){
                         let valorClase = "column has-text-centered ml-2"
                         if (!showSubmit){
@@ -36,7 +44,6 @@ function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setC
                             else if (truefalse === false && radioTrue) { valorClase = "column has-text-centered ml-2 has-text-danger"}
                             else {valorClase = "column has-text-centered ml-2"}
                         }
-                        console.log(radioTrue)
                         return valorClase
                     }
 
@@ -50,8 +57,9 @@ function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setC
                             htmlFor={`${item.answer}`} key={`${item.id}`}>
 
                                 <input 
+                                ref={false}
                                 className="m-1"
-                                onChange={()=> {chosenAnswer(numeroPregunta, item.is_correct, item.id);                       setOptionChecked(item.id);
+                                onChange={()=> {chosenAnswer(numeroPregunta, item.is_correct, item.id);setOptionChecked(item.id); 
                                 }} 
                                 type="radio"
                                 checked={radioTrue}

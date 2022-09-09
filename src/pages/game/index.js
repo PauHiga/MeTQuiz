@@ -1,12 +1,11 @@
 import './'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import QuestionCard from '../../componentes/QuestionCard'
 import Breadcrumb from '../../componentes/Breadcrumb'
 import './index.css'
 import Button from '../../componentes/Button'
 import FinalImage from '../../componentes/final-image'
 import useFetch from '../../hooks/useFetch/inedx'
-import { useEffect } from 'react'
 
 function Game(){
 
@@ -40,6 +39,8 @@ function Game(){
     const PlayAgain = () =>{
         setReset(true)
     }
+    // const inputRef = useRef()
+    // const callInputRef = () => {inputRef.current.focus();}
 
     useEffect(()=>{
         setScore(0)
@@ -63,6 +64,7 @@ function Game(){
     return (
         <section className={`${backgroundColor}`}>
             <div className='max-width'>
+            {/* <input ref={inputRef} type="text" /> */}
                 <Breadcrumb/>
                 <h1 className="has-text-centered title-quiz">Harry Potter Quiz Game</h1>
                 <div>
@@ -100,6 +102,7 @@ function Game(){
 
 
                             <div className='is-flex is-flex-direction-column is-align-items-center'>
+                                {/* <Button text="prueba" onClick={callInputRef}/> */}
                                 
                                 { missingAnswers && showSubmit && <p>Te falta responder {wizardQuestion.length - checkAnswer.length} preguntas!</p>
                                 }
