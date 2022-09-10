@@ -70,7 +70,7 @@ function Game(){
                     {   
                     !loading && (
                         <>
-                            <div className='is-flex is-justify-content-center'>
+                            <div className='level'>
                             <Button text="Slytherin Style" onClick={sly}/>
                             <Button text="Gryffindor Style" onClick={gry}/>
                             <Button text="Hufflepuff  Style" onClick={huf}/>
