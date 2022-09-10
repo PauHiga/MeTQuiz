@@ -1,5 +1,5 @@
 import './'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import QuestionCard from '../../componentes/QuestionCard'
 import Breadcrumb from '../../componentes/Breadcrumb'
 import './index.css'
@@ -32,15 +32,12 @@ function Game(){
     const [score, setScore] = useState(0)
     const [missingAnswers, setMissingAnswers] = useState(false)
     const [showSubmit, setshowSubmit] = useState(true)
-
     const rightAnswers = checkAnswer.filter((item)=>item.answerTF === true)
-
     const [reset, setReset] = useState(false)
+
     const PlayAgain = () =>{
         setReset(true)
     }
-    // const inputRef = useRef()
-    // const callInputRef = () => {inputRef.current.focus();}
 
     useEffect(()=>{
         setScore(0)
@@ -50,7 +47,6 @@ function Game(){
         setReset(false)
     }, [reset])
 
-
     function submitButtonPressed(){
         if (checkAnswer.length === wizardQuestion.length) { 
         setMissingAnswers(false)
@@ -58,13 +54,12 @@ function Game(){
         setshowSubmit(false)
         } else {
         setMissingAnswers(true)       
-    }
+        }
     }
 
     return (
         <section className={`${backgroundColor}`}>
             <div className='max-width'>
-            {/* <input ref={inputRef} type="text" /> */}
                 <Breadcrumb/>
                 <h1 className="has-text-centered title-quiz">Harry Potter Quiz Game</h1>
                 <div>
@@ -93,37 +88,30 @@ function Game(){
                                         respuestasActuales = {item.answers}
                                         showSubmit = {showSubmit}
                                         reset = {reset}
-                                        setReset = {setReset}
-                                        PlayAgain = {PlayAgain}
                                         />
                                     }) 
                                 }
                             </div>
-
-
-                            <div className='is-flex is-flex-direction-column is-align-items-center'>
-                                {/* <Button text="prueba" onClick={callInputRef}/> */}
-                                
-                                { missingAnswers && showSubmit && <p>Te falta responder {wizardQuestion.length - checkAnswer.length} preguntas!</p>
+                            <div className='is-flex is-flex-direction-column is-align-items-center'>                                
+                                { 
+                                    missingAnswers && showSubmit && <p>Te falta responder {wizardQuestion.length - checkAnswer.length} preguntas!</p>
                                 }
-                                { showSubmit && <Button text="Validar" onClick={()=>submitButtonPressed()}/> 
+                                {   
+                                    showSubmit && <Button text="Validar" onClick={()=>submitButtonPressed()}/> 
                                 }
-                                { !showSubmit && 
-                                <div className='is-flex is-flex-direction-column is-align-items-center'>
+                                {   
+                                    !showSubmit && 
+                                    <div className='is-flex is-flex-direction-column is-align-items-center'>
                                     <p className='level-item'>Obtuviste {score} puntos!</p>
                                     <FinalImage score={score}/>
                                     <Button onClick={()=>PlayAgain()} text="Jugar de nuevo" 
                                     /> 
-                                </div>
+                                    </div>
                                 }
-
-                                
                             </div>    
                         </>
                     )}    
-
                 </div>
-
             </div>
         </section>
     )

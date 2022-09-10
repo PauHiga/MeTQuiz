@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect} from "react"
 
 function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setCheckAnswer, checkAnswer, showSubmit, reset})
 {   
@@ -9,33 +9,24 @@ function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setC
         {
             id: questionId,
             answerTF: answerTrueFalse,
-            answerTd: answerId
+            // answerTd: answerId
         }
         ])
     }
 
     const [optionChecked, setOptionChecked] = useState(0)
-    const inputRef = useRef()
-    const [firstWrongChoice, setFirstWrongChoice] = useState()
-    const callInputRef = () => {inputRef.current.focus();}
 
     useEffect(()=> {    
         setOptionChecked(0)
     }, [reset]);
 
-    function checkFirstWrong(){
-        
-        
-    }
-
     return (
         <div className="box m-6">
             <h3 className= "mb-5" > {numeroPregunta}- {preguntaActual}</h3>
             <div className="columns">
-            {
-                
-                respuestasActuales.map((item) => {
 
+            {
+                respuestasActuales.map((item) => {
 
                     function colorAnswer(truefalse){
                         let valorClase = "column has-text-centered ml-2"
@@ -51,16 +42,13 @@ function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setC
                     if (item.id === optionChecked
                          ){radioTrue=true}else {radioTrue=false}
 
-
                     return (
                             <label className={colorAnswer(item.is_correct)}
                             htmlFor={`${item.answer}`} key={`${item.id}`}>
 
                                 <input 
-                                ref={false}
                                 className="m-1"
-                                onChange={()=> {chosenAnswer(numeroPregunta, item.is_correct, item.id);setOptionChecked(item.id); 
-                                }} 
+                                onChange={()=> {chosenAnswer(numeroPregunta, item.is_correct, item.id);setOptionChecked(item.id)}} 
                                 type="radio"
                                 checked={radioTrue}
                                 id={`${item.answer}`}
