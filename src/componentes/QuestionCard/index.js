@@ -2,6 +2,7 @@ import { useState, useEffect} from "react"
 
 function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setCheckAnswer, checkAnswer, showSubmit, reset})
 {   
+    console.log("child" + preguntaActual)
 
     function chosenAnswer( questionId, answerTrueFalse, answerId) {
         const noDuplicatedAnswers = checkAnswer.filter((item) => item.id !== questionId) 
@@ -9,7 +10,6 @@ function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setC
         {
             id: questionId,
             answerTF: answerTrueFalse,
-            // answerTd: answerId
         }
         ])
     }

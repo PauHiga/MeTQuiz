@@ -3,6 +3,13 @@
     width: 90vw;
 }
 
+.houses-buttons-box{
+    max-width: 95vw;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .sly{
     background:linear-gradient(70deg, rgba(170,170,170,1) 25%, rgba(42,98,61,1) 50%);
     color: rgb(2, 37, 33);

@@ -26,7 +26,7 @@ function Game(){
 
     const urlAPI = "https://62bb6e36573ca8f83298fbef.mockapi.io/metcampweb22/v1/questions/harry-potter"
 
-    const {loading, data :wizardQuestion} = useFetch(urlAPI)
+    const {loading, items :wizardQuestion} = useFetch(urlAPI)
 
     const [checkAnswer, setCheckAnswer] = useState([])
     const [score, setScore] = useState(0)
@@ -57,6 +57,7 @@ function Game(){
         }
     }
 
+
     return (
         <section className={`${backgroundColor}`}>
             <div className='max-width'>
@@ -64,34 +65,35 @@ function Game(){
                 <h1 className="has-text-centered title-quiz">Harry Potter Quiz Game</h1>
                 <div>
                     {   
-                    loading && <div className="has-text-centered" ><span>Loading . . . </span></div>
+                    loading && <div className="has-text-centered"><span>Loading . . . </span></div>
                     }
 
                     {   
                     !loading && (
+
                         <>
-                            <div className='level'>
+                            <div className='houses-buttons-box'>
                             <Button text="Slytherin Style" onClick={sly}/>
                             <Button text="Gryffindor Style" onClick={gry}/>
                             <Button text="Hufflepuff  Style" onClick={huf}/>
                             <Button text="Ravenclaw Style" onClick={rav}/>
                             </div> 
 
-                                <div>
-                                {
-                                    wizardQuestion.map((item) => {return <QuestionCard 
-                                        setCheckAnswer={setCheckAnswer}
-                                        checkAnswer={checkAnswer} 
-                                        key= {item.id} 
-                                        numeroPregunta = {item.id} 
-                                        preguntaActual = {item.question} 
-                                        respuestasActuales = {item.answers}
-                                        showSubmit = {showSubmit}
-                                        reset = {reset}
-                                        />
-                                    }) 
-                                }
-                            </div>
+                            <form>
+                            {
+                                wizardQuestion.map((item) => {return <QuestionCard 
+                                    setCheckAnswer={setCheckAnswer}
+                                    checkAnswer={checkAnswer} 
+                                    key= {item.id} 
+                                    numeroPregunta = {item.id} 
+                                    preguntaActual = {item.question} 
+                                    respuestasActuales = {item.answers}
+                                    showSubmit = {showSubmit}
+                                    reset = {reset}
+                                    />
+                                }) 
+                            }
+                            </form>
                             <div className='is-flex is-flex-direction-column is-align-items-center'>                                
                                 { 
                                     missingAnswers && showSubmit && <p>Te falta responder {wizardQuestion.length - checkAnswer.length} preguntas!</p>
@@ -102,7 +104,7 @@ function Game(){
                                 {   
                                     !showSubmit && 
                                     <div className='is-flex is-flex-direction-column is-align-items-center'>
-                                    <p className='level-item'>Obtuviste {score} puntos!</p>
+                                    <p className='level-item'>Tu puntaje fue {score}!</p>
                                     <FinalImage score={score}/>
                                     <Button onClick={()=>PlayAgain()} text="Jugar de nuevo" 
                                     /> 
@@ -110,7 +112,9 @@ function Game(){
                                 }
                             </div>    
                         </>
-                    )}    
+                    )
+
+                    }    
                 </div>
             </div>
         </section>
