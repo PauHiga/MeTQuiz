@@ -60,7 +60,7 @@ function Game(){
 
     return (
         <section className={`${backgroundColor}`}>
-            <div className='max-width'>
+            <div className='max-width box'>
                 <Breadcrumb/>
                 <h1 className="has-text-centered title-quiz">Harry Potter Quiz Game</h1>
                 <div>

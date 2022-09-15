@@ -5,14 +5,15 @@ import Game from './pages/game';
 import AboutMe from './pages/aboutme';
 import SobreMi from './pages/aboutme/sobre-mi';
 import 'bulma/css/bulma.min.css';
-import packageInfo from '../package.json'
+// import packageInfo from '../package.json'
 
 function App() {
 
   return (
     <div className="App">
     <BrowserRouter 
-    basename={getBasename()}>
+    // basename={getBasename()}
+    >
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/game' element={<Game/>}/>
@@ -25,10 +26,11 @@ function App() {
   );
 }
 
+  // "homepage": "https://PauHiga.github.io/MeTQuiz",
 
-function getBasename() {
-  let array = packageInfo.homepage.split("/");
-  return array[array.length-1];
-}
+// function getBasename() {
+//   let array = packageInfo.homepage.split("/");
+//   return array[array.length-1];
+// }
 export default App;
 
