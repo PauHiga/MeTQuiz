@@ -10,22 +10,12 @@ import useFetch from '../../hooks/useFetch/inedx'
 function Game(){
 
     const [backgroundColor, setBackgroundColor] = useState("section is-flex is-justify-content-center")
-
-    const sly = ()=>{
-        setBackgroundColor("section is-flex is-justify-content-center sly")
-    }
-    const gry = ()=>{
-        setBackgroundColor("section is-flex is-justify-content-center gry")
-    }
-    const huf = ()=>{
-        setBackgroundColor("section is-flex is-justify-content-center huf")
-    }
-    const rav = ()=>{
-        setBackgroundColor("section is-flex is-justify-content-center rav")
-    }
+    const sly = ()=>{setBackgroundColor("section is-flex is-justify-content-center sly")}
+    const gry = ()=>{setBackgroundColor("section is-flex is-justify-content-center gry")}
+    const huf = ()=>{setBackgroundColor("section is-flex is-justify-content-center huf")}
+    const rav = ()=>{setBackgroundColor("section is-flex is-justify-content-center rav")}
 
     const urlAPI = "https://62bb6e36573ca8f83298fbef.mockapi.io/metcampweb22/v1/questions/harry-potter"
-
     const {loading, items :wizardQuestion} = useFetch(urlAPI)
 
     const [checkAnswer, setCheckAnswer] = useState([])
@@ -35,9 +25,7 @@ function Game(){
     const rightAnswers = checkAnswer.filter((item)=>item.answerTF === true)
     const [reset, setReset] = useState(false)
 
-    const PlayAgain = () =>{
-        setReset(true)
-    }
+    const PlayAgain = () =>{setReset(true)}
 
     useEffect(()=>{
         setScore(0)
@@ -57,7 +45,6 @@ function Game(){
         }
     }
 
-
     return (
         <section className={`${backgroundColor}`}>
             <div className='max-width box'>
@@ -70,7 +57,6 @@ function Game(){
 
                     {   
                     !loading && (
-
                         <>
                             <div className='houses-buttons-box'>
                             <Button text="Slytherin Style" onClick={sly}/>
@@ -85,9 +71,7 @@ function Game(){
                                     setCheckAnswer={setCheckAnswer}
                                     checkAnswer={checkAnswer} 
                                     key= {item.id} 
-                                    numeroPregunta = {item.id} 
-                                    preguntaActual = {item.question} 
-                                    respuestasActuales = {item.answers}
+                                    preguntaActual = {item}
                                     showSubmit = {showSubmit}
                                     reset = {reset}
                                     />
@@ -95,12 +79,8 @@ function Game(){
                             }
                             </form>
                             <div className='is-flex is-flex-direction-column is-align-items-center'>                                
-                                { 
-                                    missingAnswers && showSubmit && <p>Te falta responder {wizardQuestion.length - checkAnswer.length} preguntas!</p>
-                                }
-                                {   
-                                    showSubmit && <Button text="Validar" onClick={()=>submitButtonPressed()}/> 
-                                }
+                                {missingAnswers && showSubmit && <p>Te falta responder {wizardQuestion.length - checkAnswer.length} preguntas!</p>}
+                                {showSubmit && <Button text="Validar" onClick={()=>submitButtonPressed()}/>}
                                 {   
                                     !showSubmit && 
                                     <div className='is-flex is-flex-direction-column is-align-items-center'>
@@ -112,9 +92,7 @@ function Game(){
                                 }
                             </div>    
                         </>
-                    )
-
-                    }    
+                    )}    
                 </div>
             </div>
         </section>

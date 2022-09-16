@@ -2,7 +2,7 @@ import { useNavigate } from "react-router"
 import { useLocation } from "react-router-dom"
 import './index.css'
 
-function Breadcrumb({actualPage}){
+function Breadcrumb(){
 
     const navigate = useNavigate()
     const location = useLocation()

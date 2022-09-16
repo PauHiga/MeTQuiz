@@ -1,10 +1,8 @@
 import { useState, useEffect} from "react"
 
-function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setCheckAnswer, checkAnswer, showSubmit, reset})
-{   
-    console.log("child" + preguntaActual)
+function QuestionCard({preguntaActual, setCheckAnswer, checkAnswer, showSubmit, reset}) {  
 
-    function chosenAnswer( questionId, answerTrueFalse, answerId) {
+    function chosenAnswer( questionId, answerTrueFalse) {
         const noDuplicatedAnswers = checkAnswer.filter((item) => item.id !== questionId) 
         setCheckAnswer([...noDuplicatedAnswers,
         {
@@ -22,11 +20,9 @@ function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setC
 
     return (
         <div className="box m-6">
-            <h3 className= "mb-5" > {numeroPregunta}- {preguntaActual}</h3>
+            <h3 className= "mb-5" > {preguntaActual.id}- {preguntaActual.question}</h3>
             <div className="columns">
-
-            {
-                respuestasActuales.map((item) => {
+                {preguntaActual.answers.map((item) => {
 
                     function colorAnswer(truefalse){
                         let valorClase = "column has-text-centered ml-2"
@@ -38,26 +34,32 @@ function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setC
                         return valorClase
                     }
 
+                    let disabled = false
+                    if (!showSubmit){disabled=true}
+                    else {disabled=false}
+
                     let radioTrue 
-                    if (item.id === optionChecked
-                         ){radioTrue=true}else {radioTrue=false}
+                    if (item.id === optionChecked){radioTrue=true}
+                    else {radioTrue=false}
 
                     return (
-                            <label className={colorAnswer(item.is_correct)}
-                            htmlFor={`${item.answer}`} key={`${item.id}`}>
+                        <label 
+                        className={colorAnswer(item.is_correct)}
+                        htmlFor={`${item.answer}`} key={`${item.id}`}>
 
-                                <input 
-                                className="m-1"
-                                onChange={()=> {chosenAnswer(numeroPregunta, item.is_correct, item.id);setOptionChecked(item.id)}} 
-                                type="radio"
-                                checked={radioTrue}
-                                id={`${item.answer}`}
-                                name={`${preguntaActual}`
-                                }></input>
-                            {item.answer}</label>
-                        )
-                    })
-            }
+                        <input 
+                        className="m-1"
+                        onChange={()=> {chosenAnswer(preguntaActual.id, item.is_correct, item.id);setOptionChecked(item.id)}} 
+                        type="radio"
+                        checked={radioTrue}
+                        disabled={disabled}
+                        id={`${item.answer}`}
+                        name={`${preguntaActual.question}`}></input>
+                        {item.answer}
+                        </label>
+                    )
+                    
+                })}
             </div>
         </div>
     )
