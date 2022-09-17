@@ -1,10 +1,18 @@
-import { useState, useEffect} from "react"
+import { useState, useEffect, forwardRef } from "react"
 
-function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setCheckAnswer, checkAnswer, showSubmit, reset})
-{   
-    console.log("child" + preguntaActual)
+const QuestionCard = forwardRef(({preguntaActual, respuestasActuales, numeroPregunta,  setCheckAnswer, checkAnswer, showSubmit, reset, minWrongAnswer}, ref) => {
+    // const QuestionCard = (preguntaActual, respuestasActuales, numeroPregunta,  setCheckAnswer, checkAnswer, showSubmit, reset, minWrongAnswer, childInputRef) => {
 
-    function chosenAnswer( questionId, answerTrueFalse, answerId) {
+        // <input ref={childInputRef} />
+    // useImperativeHandle(ref, () => ({
+    //     showAlert() {
+    //       alert("Hello from Child Component")
+    //     },
+    //   }))
+
+    console.log('card received minWrongAnswer =' + minWrongAnswer);
+
+     function chosenAnswer( questionId, answerTrueFalse) {
         const noDuplicatedAnswers = checkAnswer.filter((item) => item.id !== questionId) 
         setCheckAnswer([...noDuplicatedAnswers,
         {
@@ -12,6 +20,18 @@ function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setC
             answerTF: answerTrueFalse,
         }
         ])
+
+        // console.log(checkAnswer);
+
+        // if (
+        //     checkAnswer.id>numeroPregunta 
+        //     && 
+        //     answerTrueFalse === false
+        //     ) {setFirstWrongAnswer(numeroPregunta)}
+
+        // const firstWrongAnswer = checkAnswer.filter((item) => item.id<= questionId && item.answerTF===false) 
+        // console.log(firstWrongAnswer);
+
     }
 
     const [optionChecked, setOptionChecked] = useState(0)
@@ -27,7 +47,7 @@ function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setC
 
             {
                 respuestasActuales.map((item) => {
-
+                    
                     function colorAnswer(truefalse){
                         let valorClase = "column has-text-centered ml-2"
                         if (!showSubmit){
@@ -42,13 +62,25 @@ function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setC
                     if (item.id === optionChecked
                          ){radioTrue=true}else {radioTrue=false}
 
+                    function isFirstWrong(){
+                        console.log('isFirstWrong received minWrongAnswer =' + minWrongAnswer);
+                        console.log('isFirstWrong received numeroPregunta =' + numeroPregunta);
+                        if(minWrongAnswer===numeroPregunta) { console.log("hit" + minWrongAnswer + numeroPregunta);}
+                    }
+                         
+
                     return (
                             <label className={colorAnswer(item.is_correct)}
                             htmlFor={`${item.answer}`} key={`${item.id}`}>
 
                                 <input 
                                 className="m-1"
-                                onChange={()=> {chosenAnswer(numeroPregunta, item.is_correct, item.id);setOptionChecked(item.id)}} 
+                                ref={inputRef}
+                                onChange={()=> {
+                                    chosenAnswer(numeroPregunta, item.is_correct, item.id);
+                                    setOptionChecked(item.id)
+                                    isFirstWrong()
+                                }} 
                                 type="radio"
                                 checked={radioTrue}
                                 id={`${item.answer}`}
@@ -59,8 +91,10 @@ function QuestionCard({preguntaActual, respuestasActuales, numeroPregunta,  setC
                     })
             }
             </div>
+            
+            {/* <input ref={inputRef} type="text" /> */}
         </div>
     )
-}
+});
 
 export default QuestionCard

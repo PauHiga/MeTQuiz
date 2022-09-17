@@ -1,5 +1,5 @@
 import './'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import QuestionCard from '../../componentes/QuestionCard'
 import Breadcrumb from '../../componentes/Breadcrumb'
 import './index.css'
@@ -11,18 +11,10 @@ function Game(){
 
     const [backgroundColor, setBackgroundColor] = useState("section is-flex is-justify-content-center")
 
-    const sly = ()=>{
-        setBackgroundColor("section is-flex is-justify-content-center sly")
-    }
-    const gry = ()=>{
-        setBackgroundColor("section is-flex is-justify-content-center gry")
-    }
-    const huf = ()=>{
-        setBackgroundColor("section is-flex is-justify-content-center huf")
-    }
-    const rav = ()=>{
-        setBackgroundColor("section is-flex is-justify-content-center rav")
-    }
+    const sly = ()=>{setBackgroundColor("section is-flex is-justify-content-center sly")}
+    const gry = ()=>{setBackgroundColor("section is-flex is-justify-content-center gry")}
+    const huf = ()=>{setBackgroundColor("section is-flex is-justify-content-center huf")}
+    const rav = ()=>{setBackgroundColor("section is-flex is-justify-content-center rav")}
 
     const urlAPI = "https://62bb6e36573ca8f83298fbef.mockapi.io/metcampweb22/v1/questions/harry-potter"
 
@@ -33,11 +25,41 @@ function Game(){
     const [missingAnswers, setMissingAnswers] = useState(false)
     const [showSubmit, setshowSubmit] = useState(true)
     const rightAnswers = checkAnswer.filter((item)=>item.answerTF === true)
+    const wrongAnswers = checkAnswer.filter((item)=>item.answerTF === false)
+
+    function getWrongAnswersID(){
+        return wrongAnswers.map(d => d.id);
+    }
+    function getMinWrongAnswer(){
+        return Math.min(...getWrongAnswersID());
+    }
+   
+    let minWrongAnswer = getMinWrongAnswer();
+
+    console.log("first wrong answer = " + minWrongAnswer); 
+
+
     const [reset, setReset] = useState(false)
+
+    const childInputRef = useRef(null)
+
+    
+  const focusChild = () => {
+    childInputRef.current && childInputRef.current.focus()
+  }
+    // const inputRef = useRef(null)
+    // const childCompRef = useRef()
 
     const PlayAgain = () =>{
         setReset(true)
+        // inputRef.current.focus()
     }
+
+    // const inputRef = useRef()
+    // const callInputRef = () => {inputRef.current.focus();}
+
+    // const [firstWrongAnswer, setFirstWrongAnswer] = useState({})
+    // console.log(firstWrongAnswer)
 
     useEffect(()=>{
         setScore(0)
@@ -52,6 +74,20 @@ function Game(){
         setMissingAnswers(false)
         setScore(rightAnswers.length)
         setshowSubmit(false)
+
+
+        // function getYs(){
+        //     return wrongAnswers.map(d => d.y);
+        // }
+        // function getMinY(){
+        //     return Math.min(...getYs());
+        // }
+       
+        // var res = getMinY();
+		
+		// console.log("Minimum value of y = " + res); 
+
+
         } else {
         setMissingAnswers(true)       
         }
@@ -70,8 +106,11 @@ function Game(){
 
                     {   
                     !loading && (
-
+                        
                         <>
+                              <button onClick={focusChild}>Focus child</button>
+{/* <Button text="prueba" onClick={() => childCompRef.current.showAlert()}/> */}
+
                             <div className='houses-buttons-box'>
                             <Button text="Slytherin Style" onClick={sly}/>
                             <Button text="Gryffindor Style" onClick={gry}/>
@@ -90,6 +129,10 @@ function Game(){
                                     respuestasActuales = {item.answers}
                                     showSubmit = {showSubmit}
                                     reset = {reset}
+                                    minWrongAnswer = {minWrongAnswer}
+                                    childInputRef={childInputRef}
+                                    // ref={childCompRef}
+                                    // inputRef={inputRef}
                                     />
                                 }) 
                             }
