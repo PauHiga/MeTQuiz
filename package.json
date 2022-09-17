@@ -1,5 +1,6 @@
 {
   "name": "metquiz",
+  "homepage": "https://PauHiga.github.io/MeTQuiz",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
