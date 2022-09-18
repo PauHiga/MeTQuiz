@@ -1,9 +1,9 @@
 .background{
     background: rgb(255,255,255);
     min-height: 100vh;
-    background-repeat: no-repeat, no-repeat;
+    /* background-repeat: no-repeat, no-repeat; */
     background-position: center; 
-    background-size: auto 80%;
+    background-size: auto 75%;
     background-image: url("../../assets/background.png")
 }
 
@@ -11,7 +11,7 @@
     .background{
         background: rgb(255,255,255);
         min-height: 100vh;
-        background-repeat: no-repeat, no-repeat;
+        /* background-repeat: no-repeat, no-repeat; */
         background-position: left; 
         background-size: auto 80%;
         background-image: url("../../assets/background.png")
