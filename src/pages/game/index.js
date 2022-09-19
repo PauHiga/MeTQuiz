@@ -1,5 +1,5 @@
 import './'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import QuestionCard from '../../componentes/QuestionCard'
 import Breadcrumb from '../../componentes/Breadcrumb'
 import './index.css'
@@ -23,9 +23,60 @@ function Game(){
     const [missingAnswers, setMissingAnswers] = useState(false)
     const [showSubmit, setshowSubmit] = useState(true)
     const rightAnswers = checkAnswer.filter((item)=>item.answerTF === true)
+
+    // const soloFalsas = checkAnswer.filter((item) => item.answerTF === false)
+    // const idDeFalsas = soloFalsas.map((item) => item.id)
+    // const idDeFalsas = soloFalsas.map(( { id } ) => id)
+
+    const soloIdsFalsas = checkAnswer.filter((item) => item.answerTF === false).map(({id}) => id)
+
+    
+
+
+    const idDeFalsasOrdenadas = soloIdsFalsas.sort();
+    const [primeraIncorrecta, setPrimeraIncorrecta] = useState(0);
+    useEffect(()=>{if (idDeFalsasOrdenadas.length!==0) {setPrimeraIncorrecta(idDeFalsasOrdenadas[0])}},[idDeFalsasOrdenadas])
+
+    // console.log("primera incorrecta index " + primeraIncorrecta);
+
+    const primeraIncorrectaRef = useRef(null);
+
+    // function handleClick() {
+    //     primeraIncorrectaRef.current.focus();
+    //     console.log(primeraIncorrectaRef.current);
+    //   }
+    
+    // function handleScroll() {
+    //     primeraIncorrectaRef.current.scrollIntoView({behavior: "smooth"})    
+    //   }
+
+    //     console.log(primeraIncorrectaRef.current);
+    //     console.log(primeraIncorrectaRef?.offsetTop);
+    // window.scrollTo({
+    //   top: primeraIncorrectaRef?.offsetTop,
+    //   left: 0,
+    //   behavior: "smooth",
+    // });
+
+
+    // const handleScroll = (primeraIncorrectaRef) => {
+    //     alert("handleScroll")
+    //     console.log(primeraIncorrectaRef.current);
+    //     window.scrollTo({
+    //       top: primeraIncorrectaRef.offsetTop,
+    //       left: 0,
+    //       behavior: "smooth",
+    //     });
+    //   };
+
+console.log(primeraIncorrectaRef)
+
     const [reset, setReset] = useState(false)
 
-    const PlayAgain = () =>{setReset(true)}
+    const PlayAgain = () =>{
+        primeraIncorrectaRef.current.scrollIntoView({behavior: "smooth"}) 
+        setReset(true)
+    }
 
     useEffect(()=>{
         setScore(0)
@@ -45,6 +96,9 @@ function Game(){
         }
     }
 
+
+
+
     return (
         <section className={`${backgroundColor}`}>
             <div className='max-width box'>
@@ -58,6 +112,8 @@ function Game(){
                     {   
                     !loading && (
                         <>
+
+
                             <div className='houses-buttons-box'>
                             <Button text="Slytherin Style" onClick={sly}/>
                             <Button text="Gryffindor Style" onClick={gry}/>
@@ -67,13 +123,30 @@ function Game(){
 
                             <form>
                             {
-                                wizardQuestion.map((item) => {return <QuestionCard 
+                                wizardQuestion.map((item) => {
+                                    
+                                    // var amarillo = "amarillo"
+                                    // var conditionalRef = {
+                                    //     buttonRef: buttonRef,
+                                    //     amarillo: amarillo,
+                                    //   };
+                                      
+                                    //   if (item.id === 100) {
+                                    //     conditionalRef.disabled = false;
+                                    //   } else {conditionalRef.disabled = true}
+                               
+                                    //   console.log(conditionalRef);
+
+                                    return <QuestionCard 
                                     setCheckAnswer={setCheckAnswer}
                                     checkAnswer={checkAnswer} 
                                     key= {item.id} 
                                     preguntaActual = {item}
                                     showSubmit = {showSubmit}
                                     reset = {reset}
+                                    primeraIncorrecta={primeraIncorrecta}
+                                    primeraIncorrectaRef ={primeraIncorrectaRef}
+                                    // {...conditionalRef}
                                     />
                                 }) 
                             }
@@ -86,11 +159,15 @@ function Game(){
                                     <div className='is-flex is-flex-direction-column is-align-items-center'>
                                     <p className='level-item'>Tu puntaje fue {score}!</p>
                                     <FinalImage score={score}/>
-                                    <Button onClick={()=>PlayAgain()} text="Jugar de nuevo" 
+                                    <Button onClick={
+                                        ()=>{PlayAgain();
+                                            // handleScroll();
+                                    }} text="Jugar de nuevo" 
                                     /> 
                                     </div>
                                 }
                             </div>    
+                            {/* <Button onClick={handleScroll} text="refTest"/> */}
                         </>
                     )}    
                 </div>

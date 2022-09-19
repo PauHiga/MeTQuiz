@@ -1,8 +1,8 @@
 import { useState, useEffect} from "react"
 
-function QuestionCard({preguntaActual, setCheckAnswer, checkAnswer, showSubmit, reset}) {  
+function QuestionCard({preguntaActual, setCheckAnswer, checkAnswer, showSubmit, reset, primeraIncorrecta, primeraIncorrectaRef, refs}) {
 
-    function chosenAnswer( questionId, answerTrueFalse) {
+    function chosenAnswer( questionId, answerTrueFalse, itemId) {
         const noDuplicatedAnswers = checkAnswer.filter((item) => item.id !== questionId) 
         setCheckAnswer([...noDuplicatedAnswers,
         {
@@ -10,16 +10,28 @@ function QuestionCard({preguntaActual, setCheckAnswer, checkAnswer, showSubmit, 
             answerTF: answerTrueFalse,
         }
         ])
+
     }
 
+    console.log(refs);
+
+    console.log("current ref card " + primeraIncorrectaRef.current);
+    console.log(primeraIncorrectaRef.current);
     const [optionChecked, setOptionChecked] = useState(0)
 
     useEffect(()=> {    
         setOptionChecked(0)
     }, [reset]);
 
+    console.log("preguntaActual " + preguntaActual.id);
+    console.log("primeraIncorrecta " + primeraIncorrecta)
+
     return (
-        <div className="box m-6">
+        <div 
+        // ref={primeraIncorrectaRef}
+        ref={preguntaActual.id === primeraIncorrecta ? primeraIncorrectaRef : null} 
+        // ref={preguntaActual.id === primeraIncorrecta ? primeraIncorrectaRef : null} 
+        className="box m-6">
             <h3 className= "mb-5" > {preguntaActual.id}- {preguntaActual.question}</h3>
             <div className="columns">
                 {preguntaActual.answers.map((item) => {
