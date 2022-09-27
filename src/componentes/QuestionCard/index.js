@@ -1,6 +1,6 @@
 import { useState, useEffect} from "react"
 
-function QuestionCard({preguntaActual, setCheckAnswer, checkAnswer, showSubmit, reset}) {  
+function QuestionCard({preguntaActual, setCheckAnswer, checkAnswer, showSubmit, reset, primeraIDFalsa, primeraIncorrectaRef}) {  
 
     function chosenAnswer( questionId, answerTrueFalse) {
         const noDuplicatedAnswers = checkAnswer.filter((item) => item.id !== questionId) 
@@ -19,7 +19,7 @@ function QuestionCard({preguntaActual, setCheckAnswer, checkAnswer, showSubmit, 
     }, [reset]);
 
     return (
-        <div className="box m-6">
+        <div ref={primeraIDFalsa === preguntaActual.id ? primeraIncorrectaRef : null} className="box m-6">
             <h3 className= "mb-5" > {preguntaActual.id}- {preguntaActual.question}</h3>
             <div className="columns">
                 {preguntaActual.answers.map((item) => {

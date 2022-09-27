@@ -1,3 +1,7 @@
 .has-space{
     margin: 0px 5px 0px 5px;
 }
+
+.inheirt_font_size{
+    font-size: inherit !important;
+}

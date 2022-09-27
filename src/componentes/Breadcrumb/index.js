@@ -13,7 +13,7 @@ function Breadcrumb(){
     shownCurrentLocation = shownCurrentLocation.substring(1);
 
     return (
-        <nav className="breadcrumb" aria-label="breadcrumbs">
+        <nav className="breadcrumb inheirt_font_size" aria-label="breadcrumbs">
         <ul>
         <li onClick={()=>navigate("/")}><span className="has-space"> Home </span></li>
         <li><span className="has-space">{shownCurrentLocation}</span></li>

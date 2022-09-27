@@ -1,5 +1,5 @@
 import './'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import QuestionCard from '../../componentes/QuestionCard'
 import Breadcrumb from '../../componentes/Breadcrumb'
 import './index.css'
@@ -14,18 +14,24 @@ function Game(){
     const gry = ()=>{setBackgroundColor("section is-flex is-justify-content-center gry")}
     const huf = ()=>{setBackgroundColor("section is-flex is-justify-content-center huf")}
     const rav = ()=>{setBackgroundColor("section is-flex is-justify-content-center rav")}
-
     const urlAPI = "https://62bb6e36573ca8f83298fbef.mockapi.io/metcampweb22/v1/questions/harry-potter"
     const {loading, items :wizardQuestion} = useFetch(urlAPI)
-
     const [checkAnswer, setCheckAnswer] = useState([])
     const [score, setScore] = useState(0)
     const [missingAnswers, setMissingAnswers] = useState(false)
     const [showSubmit, setshowSubmit] = useState(true)
     const rightAnswers = checkAnswer.filter((item)=>item.answerTF === true)
     const [reset, setReset] = useState(false)
-
     const PlayAgain = () =>{setReset(true)}
+    const primeraIncorrectaRef = useRef(null);
+    const soloIdsFalsas = checkAnswer.filter((item) => item.answerTF === false).map(({id}) => id)
+    const [primeraIDFalsa, setPrimeraIDFalsa] = useState(0)
+    useEffect(()=> {    
+        if (soloIdsFalsas.length >0){
+        setPrimeraIDFalsa(Math.min(...soloIdsFalsas))
+        }
+    }, [soloIdsFalsas]);
+    console.log(primeraIDFalsa);
 
     useEffect(()=>{
         setScore(0)
@@ -44,6 +50,10 @@ function Game(){
         setMissingAnswers(true)       
         }
     }
+
+    function handleScroll() {
+        primeraIncorrectaRef.current.scrollIntoView({behavior: "smooth"})    
+      }
 
     return (
         <section className={`${backgroundColor}`}>
@@ -74,6 +84,8 @@ function Game(){
                                     preguntaActual = {item}
                                     showSubmit = {showSubmit}
                                     reset = {reset}
+                                    primeraIDFalsa = {primeraIDFalsa}
+                                    primeraIncorrectaRef ={primeraIncorrectaRef}
                                     />
                                 }) 
                             }
@@ -86,8 +98,8 @@ function Game(){
                                     <div className='is-flex is-flex-direction-column is-align-items-center'>
                                     <p className='level-item'>Tu puntaje fue {score}!</p>
                                     <FinalImage score={score}/>
-                                    <Button onClick={()=>PlayAgain()} text="Jugar de nuevo" 
-                                    /> 
+                                    <Button onClick={()=>{PlayAgain(); handleScroll()}} text="Jugar de nuevo"/>
+                                    
                                     </div>
                                 }
                             </div>    
