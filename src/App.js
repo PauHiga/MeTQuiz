@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
 import Game from './pages/game';
+import GameCards from './pages/game-cards';
 import AboutMe from './pages/aboutme';
 import SobreMi from './pages/aboutme/sobre-mi';
 import 'bulma/css/bulma.min.css';
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/game' element={<Game/>}/>
+        <Route path='/game-cards' element={<GameCards/>}/>
         <Route path='/about-me' element={<AboutMe/>}/>
         <Route path='/sobre-mi' element={<SobreMi/>}/>
       </Routes>

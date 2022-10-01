@@ -1,12 +1,11 @@
-import { useState, useEffect, useRef } from 'react'
-import QuestionCard from '../../componentes/QuestionCard'
+import { useState, useEffect } from 'react'
+import IndividualQuestionCard from '../../componentes/IndividualQuestionCard'
 import Breadcrumb from '../../componentes/Breadcrumb'
 import Button from '../../componentes/Button'
 import FinalImage from '../../componentes/final-image'
 import useFetch from '../../hooks/useFetch/inedx'
-import './index.css'
 
-function Game(){
+function GameCards(){
 
     const [backgroundColor, setBackgroundColor] = useState("section is-flex is-justify-content-center")
     const sly = ()=>{setBackgroundColor("section is-flex is-justify-content-center sly")}
@@ -22,15 +21,6 @@ function Game(){
     const rightAnswers = checkAnswer.filter((item)=>item.answerTF === true)
     const [reset, setReset] = useState(false)
     const PlayAgain = () =>{setReset(true)}
-    const primeraIncorrectaRef = useRef(null);
-    const soloIdsFalsas = checkAnswer.filter((item) => item.answerTF === false).map(({id}) => id)
-    const [primeraIDFalsa, setPrimeraIDFalsa] = useState(0)
-    useEffect(()=> {    
-        if (soloIdsFalsas.length >0){
-        setPrimeraIDFalsa(Math.min(...soloIdsFalsas))
-        }
-    }, [soloIdsFalsas]);
-    console.log(primeraIDFalsa);
 
     useEffect(()=>{
         setScore(0)
@@ -47,12 +37,9 @@ function Game(){
         setshowSubmit(false)
         } else {
         setMissingAnswers(true)       
-        }
     }
+}
 
-    function handleScroll() {
-        primeraIncorrectaRef.current.scrollIntoView({behavior: "smooth"})    
-      }
 
     return (
         <section className={`${backgroundColor}`}>
@@ -76,17 +63,9 @@ function Game(){
 
                             <form>
                             {
-                                wizardQuestion.map((item) => {return <QuestionCard 
-                                    setCheckAnswer={setCheckAnswer}
-                                    checkAnswer={checkAnswer} 
-                                    key= {item.id} 
-                                    preguntaActual = {item}
-                                    showSubmit = {showSubmit}
-                                    reset = {reset}
-                                    primeraIDFalsa = {primeraIDFalsa}
-                                    primeraIncorrectaRef ={primeraIncorrectaRef}
-                                    />
-                                }) 
+                                <h1>{wizardQuestion[3].question}</h1>
+                               
+
                             }
                             </form>
                             <div className='is-flex is-flex-direction-column is-align-items-center'>                                
@@ -97,7 +76,7 @@ function Game(){
                                     <div className='is-flex is-flex-direction-column is-align-items-center'>
                                     <p className='level-item'>Tu puntaje fue {score}!</p>
                                     <FinalImage score={score}/>
-                                    <Button onClick={()=>{PlayAgain(); handleScroll()}} text="Jugar de nuevo"/>
+                                    <Button onClick={()=>PlayAgain()} text="Jugar de nuevo"/>
                                     
                                     </div>
                                 }
@@ -110,4 +89,4 @@ function Game(){
     )
 }
 
-export default Game
+export default GameCards
