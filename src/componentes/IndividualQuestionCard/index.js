@@ -1,66 +1,90 @@
-import { useState, useEffect} from "react"
+import { useState} from "react"
+import Button from "../Button"
 
-function IndividualQuestionCard({preguntaActual, setCheckAnswer, checkAnswer, showSubmit, reset}) {  
+function IndividualQuestionCard({wizardQuestion}) 
+{
+    const [numeroPreguntaIndividual, setNumeroPreguntaIndividual] = useState(0)
+    const [finalCard, setFinalCard] = useState(false)
+    const [listOfIndividualAnswers, setListOfIndividualAnswers] = useState([])
+    const [optionChecked, setOptionChecked] = useState(0)
+    const [isCardAnswered, setIsCardAnswered] = useState(false)
+    const countScore = listOfIndividualAnswers.filter((item)=>item.answerTF === true)
 
-    function chosenAnswer( questionId, answerTrueFalse) {
-        const noDuplicatedAnswers = checkAnswer.filter((item) => item.id !== questionId) 
-        setCheckAnswer([...noDuplicatedAnswers,
-        {
-            id: questionId,
-            answerTF: answerTrueFalse,
-        }
-        ])
+    console.log(countScore);
+
+    function next(){
+        if (numeroPreguntaIndividual + 1 < wizardQuestion.length)
+            {
+            setNumeroPreguntaIndividual(numeroPreguntaIndividual + 1)
+            setIsCardAnswered(false)
+            setOptionChecked(0)
+            }
+        else
+            setFinalCard(true)
     }
 
-    const [optionChecked, setOptionChecked] = useState(0)
+    function individualAnswer(questionId, trueOrFalse){
+        const noRepeat = listOfIndividualAnswers.filter((item) => item.chosenQuestionId !== questionId)
+        setListOfIndividualAnswers([...noRepeat,
+        {
+            chosenQuestionId: questionId,
+            answerTF: trueOrFalse,
+        }
+        ])
+        setIsCardAnswered(true)
+    }
 
-    useEffect(()=> {    
+    function resetGame(){
+        setNumeroPreguntaIndividual(0)
+        setFinalCard(false)
+        setListOfIndividualAnswers([])
         setOptionChecked(0)
-    }, [reset]);
+        setIsCardAnswered(false)
+    }
 
     return (
         <div className="box m-6">
-            <h3 className= "mb-5" > {preguntaActual.id}- {preguntaActual.question}</h3>
-            <div className="columns">
-                {preguntaActual.answers.map((item) => {
+            {
+                !finalCard &&(
+                    <>
+                        <h3 className= "mb-5" >{wizardQuestion[numeroPreguntaIndividual].id} - {wizardQuestion[numeroPreguntaIndividual].question}</h3>
 
-                    function colorAnswer(truefalse){
-                        let valorClase = "column has-text-centered ml-2"
-                        if (!showSubmit){
-                            if (truefalse === true && radioTrue) { valorClase = "column has-text-centered ml-2 has-text-primary"}
-                            else if (truefalse === false && radioTrue) { valorClase = "column has-text-centered ml-2 has-text-danger"}
-                            else {valorClase = "column has-text-centered ml-2"}
-                        }
-                        return valorClase
-                    }
+                    {wizardQuestion[numeroPreguntaIndividual].answers.map((item)=>{
+                        let radioTrue 
+                        if (item.id === optionChecked){radioTrue=true}
+                        else {radioTrue=false}
 
-                    let disabled = false
-                    if (!showSubmit){disabled=true}
-                    else {disabled=false}
+                        return(
+                            <div key={item.answer} onChange={()=>individualAnswer(wizardQuestion[numeroPreguntaIndividual].id, item.is_correct)}>
 
-                    let radioTrue 
-                    if (item.id === optionChecked){radioTrue=true}
-                    else {radioTrue=false}
+                                <input 
+                                id={`${item.answer}`} 
+                                name={`${wizardQuestion.question}`} 
+                                className="m-1" 
+                                type="radio" 
+                                onChange={()=>setOptionChecked(item.id)}
+                                checked={radioTrue}></input>
 
-                    return (
-                        <label 
-                        className={colorAnswer(item.is_correct)}
-                        htmlFor={`${item.answer}`} key={`${item.id}`}>
+                                <label htmlFor={`${item.answer}`} className="pr-6 py-1" >{item.answer}</label>
 
-                        <input 
-                        className="m-1"
-                        onChange={()=> {chosenAnswer(preguntaActual.id, item.is_correct, item.id);setOptionChecked(item.id)}} 
-                        type="radio"
-                        checked={radioTrue}
-                        disabled={disabled}
-                        id={`${item.answer}`}
-                        name={`${preguntaActual.question}`}></input>
-                        {item.answer}
-                        </label>
-                    )
-                    
-                })}
-            </div>
+                            </div>
+                        )
+                    })}
+                    <div className="is-flex is-justify-content-center">
+                        <Button text="Confirmar" onClick={()=> next()} disabled={!isCardAnswered}/>
+                    </div>
+                    </>  
+                )
+            }
+
+            {
+                finalCard && 
+                    <div className="is-flex is-flex-direction-column is-align-items-center">
+                        <h3>Tuviste {countScore.length} / {wizardQuestion.length} respuestas correctas!</h3>
+                        <Button text="Jugar de nuevo" onClick={()=>resetGame()}/>
+                    </div>
+            } 
+
         </div>
     )
 }

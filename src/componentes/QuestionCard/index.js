@@ -43,20 +43,22 @@ function QuestionCard({preguntaActual, setCheckAnswer, checkAnswer, showSubmit, 
                     else {radioTrue=false}
 
                     return (
-                        <label 
-                        className={colorAnswer(item.is_correct)}
-                        htmlFor={`${item.answer}`} key={`${item.id}`}>
-
-                        <input 
-                        className="m-1"
-                        onChange={()=> {chosenAnswer(preguntaActual.id, item.is_correct, item.id);setOptionChecked(item.id)}} 
-                        type="radio"
-                        checked={radioTrue}
-                        disabled={disabled}
-                        id={`${item.answer}`}
-                        name={`${preguntaActual.question}`}></input>
-                        {item.answer}
-                        </label>
+                        <>
+                            <label 
+                            className={colorAnswer(item.is_correct)}
+                            htmlFor={`${item.answer}`} 
+                            key={`${item.id}`}>
+                            <input 
+                            className="m-1"
+                            onChange={()=> {chosenAnswer(preguntaActual.id, item.is_correct, item.id);setOptionChecked(item.id)}} 
+                            type="radio"
+                            checked={radioTrue}
+                            disabled={disabled}
+                            id={`${item.answer}`}
+                            name={`${preguntaActual.question}`}></input>
+                            {item.answer}
+                            </label>
+                        </>
                     )
                     
                 })}

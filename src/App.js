@@ -1,10 +1,9 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
-import Game from './pages/game';
-import GameCards from './pages/game-cards';
-import AboutMe from './pages/aboutme';
-import SobreMi from './pages/aboutme/sobre-mi';
+import Game from './pages/gameQuiz';
+import GameIndCards from './pages/gameTarjetas'
+import Info from './pages/info';
 import 'bulma/css/bulma.min.css';
 import packageInfo from '../package.json'
 
@@ -17,10 +16,9 @@ function App() {
     >
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path='/game' element={<Game/>}/>
-        <Route path='/game-cards' element={<GameCards/>}/>
-        <Route path='/about-me' element={<AboutMe/>}/>
-        <Route path='/sobre-mi' element={<SobreMi/>}/>
+        <Route path='/gameQuiz' element={<Game/>}/>
+        <Route path='/gameCards' element={<GameIndCards/>}/>
+        <Route path='/info' element={<Info/>}/>
       </Routes>
     </BrowserRouter>
 

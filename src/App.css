@@ -7,3 +7,71 @@ body{
   min-height: 100vh;
 }
 
+.custom-size{
+  max-width:1300px;
+  width: 90vw;
+  min-height:90vh;
+}
+
+.houses-buttons-box{
+  max-width: 95vw;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.custom-button{
+  font-family: inherit !important;
+  font-size: inherit !important;
+  margin: 5px;
+  width: 130px;
+}
+
+.sly{
+  background:linear-gradient(70deg, rgba(170,170,170,1) 25%, rgba(42,98,61,1) 50%);
+  color: rgb(2, 37, 33);
+  font-family: 'Jim Nightshade', cursive;
+  font-size: x-large;
+}
+
+.sly .custom-button{
+  font-size: large !important;
+}
+
+.gry{
+  background:linear-gradient(70deg, rgba(238,186,48,1) 25%, rgba(174,0,1,1) 50%);
+  color: rgb(43, 4, 4);
+  font-family: 'Jim Nightshade', cursive;
+  font-size: x-large;
+}
+
+.gry .custom-button{
+  font-size: large !important;
+}
+
+.huf{
+  background:linear-gradient(70deg, rgba(0,0,0,1) 15%, rgba(255,237,134,1) 50%);
+  color: black;
+  font-family: 'Jim Nightshade', cursive;
+  font-size: x-large;
+}
+
+.huf .custom-button{
+  font-size: large !important;
+}
+
+.rav{
+  background:linear-gradient(70deg, rgba(148,107,45,1) 25%, rgba(34,47,91,1) 50%);
+  color: white;
+  font-family: 'Jim Nightshade', cursive;
+  font-size: x-large;
+}
+
+.rav .custom-button{
+  font-size: large !important;
+}
+
+.title-quiz{
+  font-size: 40px;
+  margin-bottom: 2vh;
+}

@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react'
-import IndividualQuestionCard from '../../componentes/IndividualQuestionCard'
+import { useState, useEffect, useRef } from 'react'
+import QuestionCard from '../../componentes/QuestionCard'
 import Breadcrumb from '../../componentes/Breadcrumb'
 import Button from '../../componentes/Button'
+import ButtonCustom from '../../componentes/ButtonCustom'
 import FinalImage from '../../componentes/final-image'
 import useFetch from '../../hooks/useFetch/inedx'
 
-function GameCards(){
+function Game(){
 
     const [backgroundColor, setBackgroundColor] = useState("section is-flex is-justify-content-center")
     const sly = ()=>{setBackgroundColor("section is-flex is-justify-content-center sly")}
@@ -21,6 +22,15 @@ function GameCards(){
     const rightAnswers = checkAnswer.filter((item)=>item.answerTF === true)
     const [reset, setReset] = useState(false)
     const PlayAgain = () =>{setReset(true)}
+    const primeraIncorrectaRef = useRef(null);
+    const soloIdsFalsas = checkAnswer.filter((item) => item.answerTF === false).map(({id}) => id)
+    const [primeraIDFalsa, setPrimeraIDFalsa] = useState(0)
+    useEffect(()=> {    
+        if (soloIdsFalsas.length >0){
+        setPrimeraIDFalsa(Math.min(...soloIdsFalsas))
+        }
+    }, [soloIdsFalsas]);
+    console.log(wizardQuestion);
 
     useEffect(()=>{
         setScore(0)
@@ -37,9 +47,12 @@ function GameCards(){
         setshowSubmit(false)
         } else {
         setMissingAnswers(true)       
+        }
     }
-}
 
+    function handleScroll() {
+        primeraIncorrectaRef.current.scrollIntoView({behavior: "smooth"})    
+      }
 
     return (
         <section className={`${backgroundColor}`}>
@@ -55,17 +68,25 @@ function GameCards(){
                     !loading && (
                         <>
                             <div className='houses-buttons-box'>
-                            <Button text="Slytherin Style" onClick={sly}/>
-                            <Button text="Gryffindor Style" onClick={gry}/>
-                            <Button text="Hufflepuff  Style" onClick={huf}/>
-                            <Button text="Ravenclaw Style" onClick={rav}/>
+                            <ButtonCustom className="button custom-button" text="Slytherin Style" onClick={sly}/>
+                            <ButtonCustom className="button custom-button" text="Gryffindor Style" onClick={gry}/>
+                            <ButtonCustom className="button custom-button" text="Hufflepuff  Style" onClick={huf}/>
+                            <ButtonCustom className="button custom-button" text="Ravenclaw Style" onClick={rav}/>
                             </div> 
 
                             <form>
                             {
-                                <h1>{wizardQuestion[3].question}</h1>
-                               
-
+                                wizardQuestion.map((item) => {return <QuestionCard 
+                                    setCheckAnswer={setCheckAnswer}
+                                    checkAnswer={checkAnswer} 
+                                    key= {item.id} 
+                                    preguntaActual = {item}
+                                    showSubmit = {showSubmit}
+                                    reset = {reset}
+                                    primeraIDFalsa = {primeraIDFalsa}
+                                    primeraIncorrectaRef ={primeraIncorrectaRef}
+                                    />
+                                }) 
                             }
                             </form>
                             <div className='is-flex is-flex-direction-column is-align-items-center'>                                
@@ -76,7 +97,7 @@ function GameCards(){
                                     <div className='is-flex is-flex-direction-column is-align-items-center'>
                                     <p className='level-item'>Tu puntaje fue {score}!</p>
                                     <FinalImage score={score}/>
-                                    <Button onClick={()=>PlayAgain()} text="Jugar de nuevo"/>
+                                    <Button onClick={()=>{PlayAgain(); handleScroll()}} text="Jugar de nuevo"/>
                                     
                                     </div>
                                 }
@@ -89,4 +110,4 @@ function GameCards(){
     )
 }
 
-export default GameCards
+export default Game
