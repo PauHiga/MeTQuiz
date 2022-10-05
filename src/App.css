@@ -1,9 +1,4 @@
-.App {
-}
-
 body{
-  /* background: rgb(255,255,255); */
-  /* background: linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(227,206,255,1) 85%, rgba(255,255,255,1) 100%); */
   min-height: 100vh;
 }
 
@@ -36,6 +31,28 @@ body{
 
 .sly .custom-button{
   font-size: large !important;
+  background:linear-gradient(70deg, rgba(170,170,170,1) 5%, rgba(42,98,61,1) 40%);
+  color:white;
+  font-weight: 200;
+  border-color: black;
+}
+
+.sly .question-card{
+  font-size: large !important;
+  background:linear-gradient(70deg, rgba(170,170,170,1) 1%, rgba(42,98,61,1) 10%, rgba(42,98,61,1) 80%, rgba(170,170,170,1) 95%);
+  color:white;
+  font-weight: 200;
+  border-color: black;
+  font-size: x-large !important; 
+}
+
+.sly .individual-question-card{
+  font-size: large !important;
+  background:linear-gradient(70deg, rgba(170,170,170,1) 1%, rgba(42,98,61,1) 10%, rgba(42,98,61,1) 80%, rgba(170,170,170,1) 95%);
+  color:white;
+  font-weight: 200;
+  border-color: black;
+  font-size: x-large !important; 
 }
 
 .gry{
@@ -47,6 +64,28 @@ body{
 
 .gry .custom-button{
   font-size: large !important;
+  background:linear-gradient(70deg, rgba(238,186,48,1) 5%, rgba(174,0,1,1)  40%);
+  color:white;
+  font-weight: 200;
+  border-color: black;
+}
+
+.gry .question-card{
+  font-size: large !important;
+  background:linear-gradient(70deg, rgba(238,186,48,1) 1%, rgba(174,0,1,1)  10%, rgba(174,0,1,1)  80%, rgba(238,186,48,1) 95%);
+  color:white;
+  font-weight: 200;
+  border-color: black;
+  font-size: x-large !important; 
+}
+
+.gry .individual-question-card{
+  font-size: large !important;
+  background:linear-gradient(70deg, rgba(238,186,48,1) 1%, rgba(174,0,1,1)  10%, rgba(174,0,1,1)  80%, rgba(238,186,48,1) 95%);
+  color:white;
+  font-weight: 200;
+  border-color: black;
+  font-size: x-large !important; 
 }
 
 .huf{
@@ -58,6 +97,28 @@ body{
 
 .huf .custom-button{
   font-size: large !important;
+  background:linear-gradient(70deg, rgba(0,0,0,1) 5%, rgba(255,237,134,1) 40%);
+  color:black;
+  font-weight: 200;
+  border-color: black;
+}
+
+.huf .question-card{
+  font-size: large !important;
+  background:linear-gradient(70deg, rgba(0,0,0,1) 1%, rgba(255,237,134,1) 10%, rgba(255,237,134,1)  80%, rgba(0,0,0,1) 95%);
+  color:black;
+  font-weight: 200;
+  border-color: black;
+  font-size: x-large !important; 
+}
+
+.huf .individual-question-card{
+  font-size: large !important;
+  background:linear-gradient(70deg, rgba(0,0,0,1) 1%, rgba(255,237,134,1) 10%, rgba(255,237,134,1)  80%, rgba(0,0,0,1) 95%);
+  color:black;
+  font-weight: 200;
+  border-color: black;
+  font-size: x-large !important; 
 }
 
 .rav{
@@ -69,7 +130,30 @@ body{
 
 .rav .custom-button{
   font-size: large !important;
+  background:linear-gradient(70deg, rgba(148,107,45,1) 5%, rgba(34,47,91,1) 40%);
+  color:white;
+  font-weight: 200;
+  border-color: black;
 }
+
+.rav .question-card{
+  font-size: large !important;
+  background:linear-gradient(70deg, rgba(148,107,45,1) 1%, rgba(34,47,91,1) 10%, rgba(34,47,91,1)  80%, rgba(148,107,45,1) 95%);
+  color:white;
+  font-weight: 200;
+  border-color: black;
+  font-size: x-large !important; 
+}
+
+.rav .individual-question-card{
+  font-size: large !important;
+  background:linear-gradient(70deg, rgba(148,107,45,1) 1%, rgba(34,47,91,1) 10%, rgba(34,47,91,1)  80%, rgba(148,107,45,1) 95%);
+  color:white;
+  font-weight: 200;
+  border-color: black;
+  font-size: x-large !important; 
+}
+
 
 .title-quiz{
   font-size: 40px;

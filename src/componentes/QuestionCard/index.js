@@ -19,7 +19,7 @@ function QuestionCard({preguntaActual, setCheckAnswer, checkAnswer, showSubmit, 
     }, [reset]);
 
     return (
-        <div ref={primeraIDFalsa === preguntaActual.id ? primeraIncorrectaRef : null} className="box m-6">
+        <div className="question-card box m-6" ref={primeraIDFalsa === preguntaActual.id ? primeraIncorrectaRef : null}>
             <h3 className= "mb-5" > {preguntaActual.id}- {preguntaActual.question}</h3>
             <div className="columns">
                 {preguntaActual.answers.map((item) => {

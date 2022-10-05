@@ -12,8 +12,7 @@ function App() {
   return (
     <div className="App">
     <BrowserRouter 
-    basename="/PauHiga"
- // basename={getBasename()}
+ basename={getBasename()}
     >
       <Routes>
         <Route path='/' element={<Home/>}/>
@@ -27,9 +26,9 @@ function App() {
   );
 }
 
-// function getBasename() {
-//   let array = packageInfo.homepage.split("/");
-//   return array[array.length-1];
-// }
+function getBasename() {
+  let array = packageInfo.homepage.split("/");
+  return array[array.length-1];
+}
 export default App;
 

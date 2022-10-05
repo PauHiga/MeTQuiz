@@ -3,10 +3,11 @@ import { useState, useEffect } from "react"
 
 function useBackground(housesStyle) {
 
-    const [backgroundColor, setBackgroundColor] = useState("section is-flex is-justify-content-center")
+    const [backgroundColor, setBackgroundColor] = useState("section is-flex is-justify-content-center has-background-primary")
 
     useEffect(()=>{
-        if (housesStyle === "sly"){setBackgroundColor("section is-flex is-justify-content-center sly")}
+        if (housesStyle === "default"){setBackgroundColor("section is-flex is-justify-content-center has-background-primary")}
+    else if (housesStyle === "sly"){setBackgroundColor("section is-flex is-justify-content-center sly")}
     else if (housesStyle === "gry"){setBackgroundColor("section is-flex is-justify-content-center gry")}
     else if (housesStyle === "rav"){setBackgroundColor("section is-flex is-justify-content-center rav")}
     else if (housesStyle === "huf"){setBackgroundColor("section is-flex is-justify-content-center huf")}

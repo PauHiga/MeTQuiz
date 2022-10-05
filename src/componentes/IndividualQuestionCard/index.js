@@ -42,7 +42,7 @@ function IndividualQuestionCard({wizardQuestion})
     }
 
     return (
-        <div className="box m-6">
+        <div className="box m-6 individual-question-card">
             {
                 !finalCard &&(
                     <>

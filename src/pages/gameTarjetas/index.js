@@ -16,7 +16,7 @@ function GameIndCards(){
         <section className={`${backgroundColor}`}>
             <div className='custom-size box'>
                 <Breadcrumb/>
-                <h1 className="has-text-centered title-quiz">Harry Potter Quiz Game</h1>
+                <h1 className="has-text-centered title-quiz" onClick={()=>setHousesStyle("default")}>Harry Potter Quiz Game</h1>
                 <div>
                     {   
                     loading && <div className="has-text-centered"><span>Loading . . . </span></div>
