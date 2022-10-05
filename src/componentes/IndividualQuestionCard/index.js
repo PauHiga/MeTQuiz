@@ -1,5 +1,6 @@
 import { useState} from "react"
 import Button from "../Button"
+import FinalImage from '../final-image'
 
 function IndividualQuestionCard({wizardQuestion}) 
 {
@@ -9,8 +10,6 @@ function IndividualQuestionCard({wizardQuestion})
     const [optionChecked, setOptionChecked] = useState(0)
     const [isCardAnswered, setIsCardAnswered] = useState(false)
     const countScore = listOfIndividualAnswers.filter((item)=>item.answerTF === true)
-
-    console.log(countScore);
 
     function next(){
         if (numeroPreguntaIndividual + 1 < wizardQuestion.length)
@@ -81,6 +80,7 @@ function IndividualQuestionCard({wizardQuestion})
                 finalCard && 
                     <div className="is-flex is-flex-direction-column is-align-items-center">
                         <h3>Tuviste {countScore.length} / {wizardQuestion.length} respuestas correctas!</h3>
+                        <FinalImage score={countScore.length}/>
                         <Button text="Jugar de nuevo" onClick={()=>resetGame()}/>
                     </div>
             } 

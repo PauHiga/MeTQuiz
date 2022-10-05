@@ -1,14 +1,10 @@
 .icon-social{
     margin: 10px;
     color: rgb(63, 60, 73);
-    font-size: 35px;
+    font-size: 40px;
 }
 
 .icon-social:hover{
-    color: rgb(154, 131, 184);
-    font-size: 35px;
-}
-
-p{
-    margin: 5px, 0, 0, 0;
+    color: hsl(171, 100%, 41%);
+    font-size: 40px;
 }

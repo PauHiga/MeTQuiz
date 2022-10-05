@@ -13,19 +13,19 @@ function Info(){
         <div className="section has-background-primary">                      
             <div className="box">
                 <Breadcrumb/> 
-                <h1 class="title">Paula Gabriela Higa</h1>
-                <h2 class="subtitle">Frontend developer</h2>
+                <h1 className="title">Paula Gabriela Higa</h1>
+                <h2 className="subtitle">Frontend developer</h2>
 
                 <div className="is-flex is-flex-direction-column is-align-items-center">
                             <div>
                                 <a href="https://www.linkedin.com/in/paula-gabriela-higa-214690249/"><span className='icon-social'><FaLinkedin/></span></a>
                                 <a href="https://github.com/PauHiga/MeTQuiz/"><span className='icon-social'><FaGithub/></span></a>
+
                             </div>
-                            {/* <div className="cat"></div> */}
                 </div>               
                 <div className="message is-primary">
                     <div className="message-header">
-                        <p class="subtitle">Sobre este proyecto:</p>
+                        <p className="subtitle">Sobre este proyecto:</p>
                     </div>
                     <div className="message-body">
                         <div className="columns">
@@ -41,16 +41,15 @@ function Info(){
                                     <li>Test unitarios de componentes</li>
                                     <li>CSS framework utilizado: <a href="https://bulma.io/">Bulma</a></li>
                                 </ul>
-                                {/* <p className="block">CSS framework utilizado: <a href="https://bulma.io/">Bulma</a></p> */}
                             </div>
                         </div>
 
 
-                    <p className="block">Proyecto realizado en el MeT Camp 2022 dictado por <a href="https://mujeresentecnologia.org/"> Mujeres en Tecnología</a></p>
+                    <p className="block">Proyecto realizado en el MeT Camp 2022 de React dictado por <a href="https://mujeresentecnologia.org/"> Mujeres en Tecnología</a></p>
                     </div>
                 </div>
                 <div className="is-flex is-justify-content-center">
-                    <Button text="Ir al Quiz Game" onClick={()=>navigate("/")}/>
+                    <Button text="Ir al proyecto Quiz Game" onClick={()=>navigate("/")}/>
                 </div>
                     
             </div>

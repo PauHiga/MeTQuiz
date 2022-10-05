@@ -4,7 +4,8 @@ import Button from '../../componentes/Button'
 
 const props ={
     text: "MetCamp Test",
-    onClick: jest.fn()
+    onClick: jest.fn(), 
+    disabled: false,
 }
 
 describe("Tests en el componente Button", () =>{
@@ -12,12 +13,10 @@ describe("Tests en el componente Button", () =>{
         render(<Button {...props} />);
         const button = screen.getAllByText(/MetCamp Test/i);
         expect (button).toBeDefined();
-        // expect(button).toBeInTheDocument();  <--Este test no pasa...
     })
 
     test("Debe de ejecutar la función en onClick", ()=>{
         render(<Button {...props} />);
-        // screen.logTestingPlaygroundURL();  <---- usando esto obtuve las lineas siguientes
         const button = screen.getByRole('button', {
             name: /metcamp test/i
           })

@@ -43,11 +43,10 @@ function QuestionCard({preguntaActual, setCheckAnswer, checkAnswer, showSubmit, 
                     else {radioTrue=false}
 
                     return (
-                        <>
+                        <div className={colorAnswer(item.is_correct)} key={`${item.id}`}>
                             <label 
-                            className={colorAnswer(item.is_correct)}
                             htmlFor={`${item.answer}`} 
-                            key={`${item.id}`}>
+                            >
                             <input 
                             className="m-1"
                             onChange={()=> {chosenAnswer(preguntaActual.id, item.is_correct, item.id);setOptionChecked(item.id)}} 
@@ -58,7 +57,7 @@ function QuestionCard({preguntaActual, setCheckAnswer, checkAnswer, showSubmit, 
                             name={`${preguntaActual.question}`}></input>
                             {item.answer}
                             </label>
-                        </>
+                        </div>
                     )
                     
                 })}

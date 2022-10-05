@@ -3,14 +3,12 @@ import IndividualQuestionCard from '../../componentes/IndividualQuestionCard'
 import Breadcrumb from '../../componentes/Breadcrumb'
 import ButtonCustom from '../../componentes/ButtonCustom'
 import useFetch from '../../hooks/useFetch/inedx'
+import useBackground from '../../hooks/useBackground'
 
 function GameIndCards(){
+    const [housesStyle, setHousesStyle] = useState("")
+    const {backgroundColor} = useBackground(housesStyle)
 
-    const [backgroundColor, setBackgroundColor] = useState("section is-flex is-justify-content-center")
-    const sly = ()=>{setBackgroundColor("section is-flex is-justify-content-center sly")}
-    const gry = ()=>{setBackgroundColor("section is-flex is-justify-content-center gry")}
-    const huf = ()=>{setBackgroundColor("section is-flex is-justify-content-center huf")}
-    const rav = ()=>{setBackgroundColor("section is-flex is-justify-content-center rav")}
     const urlAPI = "https://62bb6e36573ca8f83298fbef.mockapi.io/metcampweb22/v1/questions/harry-potter"
     const {loading, items :wizardQuestion} = useFetch(urlAPI)
 
@@ -28,10 +26,10 @@ function GameIndCards(){
                     !loading && (
                         <>
                             <div className='houses-buttons-box'>
-                            <ButtonCustom className="button custom-button" text="Slytherin Style" onClick={sly}/>
-                            <ButtonCustom className="button custom-button" text="Gryffindor Style" onClick={gry}/>
-                            <ButtonCustom className="button custom-button" text="Hufflepuff  Style" onClick={huf}/>
-                            <ButtonCustom className="button custom-button" text="Ravenclaw Style" onClick={rav}/>
+                            <ButtonCustom className="button custom-button" text="Slytherin Style" onClick={()=>setHousesStyle("sly")}/>
+                            <ButtonCustom className="button custom-button" text="Gryffindor Style" onClick={()=>setHousesStyle("gry")}/>
+                            <ButtonCustom className="button custom-button" text="Hufflepuff  Style" onClick={()=>setHousesStyle("huf")}/>
+                            <ButtonCustom className="button custom-button" text="Ravenclaw Style" onClick={()=>setHousesStyle("rav")}/>
                             </div> 
 
                             <section>
