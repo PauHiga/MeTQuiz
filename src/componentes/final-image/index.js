@@ -1,5 +1,5 @@
 import bien from '../../assets/snape-approves.jfif'
-import medio from '../../assets/medio.png'
+import medio from '../../assets/medio.jpeg'
 import mal from '../../assets/dafuq.jfif'
 import { useState } from 'react'
 import { useEffect } from 'react'
